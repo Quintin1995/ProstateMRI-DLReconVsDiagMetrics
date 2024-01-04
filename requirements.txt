@@ -1,0 +1,18 @@
+-e git+https://git.web.rug.nl/ProstateML/fastMRI_PCa.git@fb2d55a26c0b91a819b9d4f5d9be371d15f7e17c#egg=fastMRI_PCa
+gast==0.3.3
+h5py==2.10.0
+Keras-Preprocessing==1.1.0
+matplotlib==3.4.3
+numpy==1.17.3
+pandas==0.25.3
+Pillow==8.4.0
+pyparsing==3.0.4
+python-dateutil==2.8.2
+rsa==4.0
+scipy==1.4.1
+SimpleITK==2.0.2
+six==1.16.0
+tensorboard==2.2.1
+tensorboard-plugin-wit==1.6.0.post3
+tensorflow==2.2.0
+tensorflow-estimator==2.2.0
