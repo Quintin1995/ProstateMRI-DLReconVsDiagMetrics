@@ -1,9 +1,10 @@
 # ProstateMRI-DLReconVsDiagMetrics
 Code for evaluating prostate MRI DL reconstructions. Focuses on T2-weighted scans, undersampling simulation, DL model training, and diagnostic metric analysis.
 
+# Publication
+https://doi.org/10.1007/s00330-024-10771-y
 
 # Data Preparation on DICOM data
-
 ## Sqlite Database filling
 This (`e6_fill_dicom_db.py`) script automates the process of filling a DICOM database with metadata extracted from DICOM files. It parses DICOM headers to extract relevant information like patient ID, study dates, and image paths. This data is then inserted into an SQLite database for easy access and management.
 
@@ -11,6 +12,8 @@ This (`e6_fill_dicom_db.py`) script automates the process of filling a DICOM dat
 The script `e12_make_train_val_test_indexes.py` is designed to create training, validation, and testing datasets for machine learning models. It efficiently segregates data by generating indices based on predefined criteria, ensuring a balanced and representative sample distribution across datasets.
 
 # Model Training
+![mask](figures/mask.png)
+An example subsampling mask taking into account the actual k-space sampling array, where k-space zero-padding is not sampled.
 ## Training fo the reconstruction model (DLRecon)
 `e24_train_t2w_recon_model.py` focuses on training reconstruction models for T2-weighted MRI images. It includes functionalities for data preparation, model configuration, training, and validation. This script is key in developing AI models for enhanced MRI image reconstruction.
 
@@ -29,11 +32,19 @@ The script `e12_make_train_val_test_indexes.py` is designed to create training, 
 `e28_eval_t2w_diag_model.py` focuses on evaluating T2-weighted MRI diagnostic models. It involves applying the trained model on test datasets and analyzing the results using diagnostic performance metrics. This script is essential for assessing the accuracy and reliability of AI-driven diagnostic models in MRI.
 
 
+# Results
+![image_quality_metrics_r4](figures/iqms_r4.png)
+![image_quality_metrics_r8](figures/iqms_r8.png)
+![roc_vs_accs](figures/roc_vs_accs.png)
+Here we see the patient level performance of the deep learning detection model on the non-accelerated baseline R=1, reconstructed on R=4 and R=8.
+We see a general trend where both detection performances degrade, however the performance on the IFFT images seems to degrades faster than the AI reconstructed.
+
+
 # Advanced Analysis
-`e29_predict_with_recon_model.py` Predicts with the reconstruction model to obtain the reconstructions on various acceleration rates.
+- `e29_predict_with_recon_model.py` Predicts with the reconstruction model to obtain the reconstructions on various acceleration rates.
 
-`e30_perm_test_diag_models_and_froc_plot.py` Performs permutation tests and FROC curve analysis, highlighting the diagnostic models' performance.
+- `e30_perm_test_diag_models_and_froc_plot.py` Performs permutation tests and FROC curve analysis, highlighting the diagnostic models' performance.
 
-`e31_predict_all_imgs_in_pipeline.py` Processes a series of images using trained models, focusing on patch-based processing. Here we refer to the input images, the intermediate aliased images, the reconstructed images, the csPCa likelihood maps and FROC binarization per lesion.
+- `e31_predict_all_imgs_in_pipeline.py` Processes a series of images using trained models, focusing on patch-based processing. Here we refer to the input images, the intermediate aliased images, the reconstructed images, the csPCa likelihood maps and FROC binarization per lesion.
 
-`e35_patient_level_error_analysis.py` Prediction, statistical analysis, and error analysis in the context of DL reconstruction and diagnostic evaluation.
+- `e35_patient_level_error_analysis.py` Prediction, statistical analysis, and error analysis in the context of DL reconstruction and diagnostic evaluation.
