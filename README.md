@@ -2,6 +2,7 @@
 Code for evaluating prostate MRI DL reconstructions. Focuses on T2-weighted scans, undersampling simulation, DL model training, and diagnostic metric analysis.
 
 # Publication
+**If you use the code please cite the following article:**
 https://doi.org/10.1007/s00330-024-10771-y
 
 # Data Preparation on DICOM data
